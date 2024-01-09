@@ -1,0 +1,160 @@
+/* MASTERSLIDER attachement */
+.ms-attached {
+    background: #000;
+    color: #fff;
+    text-align: left;
+    padding: 20px;
+}
+
+.ms-attached a {
+    margin: 15px 0 8px 0;
+}
+
+.mobile-slider-titel {
+    font-weight: bold;
+    font-size: 150%;
+}
+
+.mobile-slider-subtitel {
+    font-size: 100%;
+}
+
+.mobile-slider-small {
+    font-size: 8px;
+}
+
+/* MASTERSLIDER attachement */
+
+
+/* Slider1 Titel  */
+
+.msp-cn-120-01 {
+    font-family: "Arial";
+    font-weight: 700;
+    font-size: 66px;
+    line-height: normal;
+    white-space: nowrap;
+    color: #fff;
+    text-align: left;
+}
+
+/* APP Subtitel  */
+
+.msp-cn-120-06 {
+    font-family: "Roboto Medium";
+    font-size: 20px;
+    text-align: center;
+    line-height: normal;
+    white-space: nowrap;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+/* Slider1 Text  */
+
+.msp-cn-120-02 {
+     font-family: "Roboto Black";
+     font-size: 24px;
+     line-height: normal;
+     white-space: nowrap;
+     color: #000;
+ }
+
+.msp-cn-120-09 {
+    font-family: "Roboto Light";
+    font-size: 14px;
+    line-height: normal;
+    white-space: nowrap;
+    color: #000;
+}
+
+.msp-cn-120-25 {
+    font-family: "Roboto Light";
+    font-size: 12px;
+    line-height: normal;
+    white-space: nowrap;
+    color: #000;
+}
+
+.msp-cn-120-02x {
+	font-family: "Arial";
+    font-size: 34px;
+	font-weight: bold;
+    line-height: normal;
+    white-space: nowrap;
+	color: #009ba4;
+}
+
+
+li.haken {
+    /*list-style: "✔";*/
+}
+
+/* Slider2 Titel  */
+
+/* Slider2 Text  */
+.msp-cn-120-6 {
+    font-family: "Arial";
+    font-weight: 700;
+    font-size: 30px;
+    line-height: normal;
+    white-space: nowrap;
+    color: #fff;
+}
+
+
+/* Slider 3 Titel */
+.msp-cn-120-16 {
+    font-family: "Arial";
+    color: #fff;
+    font-size: 60px;
+    line-height: 60px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* Slider 3 Text */
+.msp-cn-120-17 {
+    font-family: "Arial";
+    color: #fff;
+    font-size: 30px;
+    line-height: 40px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* Alle Buttons */
+.msp-preset-btn-167, .msp-preset-btn-166, .msp-preset-btn-165 {
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+}
+
+.msp-preset-btn-167:hover, .msp-preset-btn-166:hover, .msp-preset-btn-165:hover {
+    text-decoration: none;
+    border-color: #ddd;
+    color: #ddd;
+}
+
+.msp-preset-btn-167:active, .msp-preset-btn-166:active, .msp-preset-btn-165:active {
+    text-decoration: none;
+    top: 1px;
+}
+
+/*!* MOBILE *!*/
+
+/*.msp-cn-120-32 {*/
+    /*font-family: "Arial";*/
+    /*font-weight: 300;*/
+    /*font-size: 48px;*/
+    /*line-height: normal;*/
+    /*white-space: nowrap;*/
+    /*color: #f2f2f2;*/
+    /*text-transform: normal;*/
+/*}*/
+
+/*.slider-bottom {*/
+
+/*}*/
+
+
