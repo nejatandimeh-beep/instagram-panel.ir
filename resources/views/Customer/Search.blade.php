@@ -2,8 +2,6 @@
 @section('Content')
     <span id="asset" class="d-none">{{asset('/')}}</span>
     <span class="d-none sellerMajorPanel"></span>
-    <span id="postLen" class="d-none">{{$postsCount}}</span>
-    <span id="postLoaded" class="d-none">0</span>
     <span id="postCat" class="d-none">{{$cat}}</span>
     <span id="commentReplyID" class="d-none"></span>
     <span id="customer_Id" class="d-none">{{isset(Auth::user()->id)?Auth::user()->id:-1}}</span>
@@ -130,6 +128,8 @@
     <!--پیش نمایش پست ها-->
     <div style="min-height: 100vh" class="container g-px-10--lg g-px-0 searchPage">
         <div class="row g-mx-1 g-pb-20 g-pb-200--lg" id="postSampleContainer">
+            <span id="postLen" class="d-none">{{$postsCount}}</span>
+            <span id="postLoaded" class="d-none">0</span>
             @foreach($posts as $key => $rec)
                 <div class="col-lg-2 col-4 g-brd-around g-brd-white p-0" id="postSample-{{$key}}">
                     <a class="d-block u-block-hover u-bg-overlay g-bg-black-opacity-0_3--after g-bg-transparent--hover--after"

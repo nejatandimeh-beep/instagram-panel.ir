@@ -111,17 +111,18 @@
                     $.ajax({
                         type: 'GET',
                         url: '/Customer-Browser-backPressed/'+1+'/free',
+                        async:false,
                         success: function (data) {
                           console.log('backPressed:',data)
                         },
                     })
                     $('#postRail').empty();
-                    switch (urlAddress) {
-                        case "/Feed":
+                    switch (true) {
+                        case urlAddress==="/Feed":
                             cacheData = sessionStorage.getItem("feedData");
                             $(cacheData).appendTo($('#postRail'));
                             break;
-                        case '/Customer-SellerMajor-Saved':
+                        case urlAddress==='/Customer-SellerMajor-Saved':
                             cacheData = sessionStorage.getItem("savedData");
                             cacheSampleData = sessionStorage.getItem("savedSampleData");
                             $('#postSampleContainer').empty();
@@ -215,21 +216,21 @@
         window.onbeforeunload = function () {
             let urlAddress = window.location.pathname;
             sessionStorage.setItem("loadStatus", 'newLoad')
-            switch (urlAddress) {
-                case "/Feed":
+            switch (true) {
+                case urlAddress==="/Feed":
                     sessionStorage.setItem("feedData", $('#postRail').html());
                     break;
-                case '/Customer-SellerMajor-Saved':
+                case urlAddress==='/Customer-SellerMajor-Saved':
                     sessionStorage.setItem("savedData", $('#postRail').html());
-                    sessionStorage.setItem("savedSampleData", $('#postRail').html());
+                    sessionStorage.setItem("savedSampleData", $('#postSampleContainer').html());
                     break;
                 case urlAddress.indexOf('/Customer-SellerMajor-Panel') >= 0:
                     sessionStorage.setItem("panelData", $('#postRail').html());
-                    sessionStorage.setItem("panelSampleData", $('#postRail').html());
+                    sessionStorage.setItem("panelSampleData", $('#postSampleContainer').html());
                     break;
                 case urlAddress.indexOf('/Customer-SellerMajor-Search') >= 0:
                     sessionStorage.setItem("searchData", $('#postRail').html());
-                    sessionStorage.setItem("searchSampleData", $('#postRail').html());
+                    sessionStorage.setItem("searchSampleData", $('#postSampleContainer').html());
                     break;
                 default:
             }
@@ -352,11 +353,7 @@
                     }
                 })
                 console.log(swiper.activeIndex, $("#eventCount").text())
-                if (swiper.activeIndex === parseInt($("#eventCount").text()) - 1) {
-                    swiperFinished = true;
-                } else {
-                    swiperFinished = false;
-                }
+                swiperFinished = swiper.activeIndex === parseInt($("#eventCount").text()) - 1;
             });
 
             swiper.on('touchStart', function () {
@@ -434,7 +431,10 @@
             if (scrollLocation > 150 && parseInt($('#postLen').text()) >= (parseInt($('#postLoaded').text()) + 6)) {
                 $('.load').removeClass('d-none');
                 if (completeLoad) {
-                    loadPost();
+                    if (sessionStorage.getItem("loadStatus") !== 'backPressed') {
+                        console.log('run load post.....')
+                        loadPost();
+                    }
                     completeLoad = false;
                 }
                 $('.load').addClass('d-none');
@@ -458,14 +458,7 @@
         });
 
         $('#postRail').on('shown.bs.modal', function () {
-            $('html').css({overflow: 'hidden', height: '100%'});
-            let sumHeight = 0;
-            $('[id^="detailPost-"]').each(function (index) {
-                if (index < postNumber) {
-                    sumHeight += $('#detailPost-' + index).outerHeight();
-                }
-            })
-            $(this).scrollTop(sumHeight + Math.round(0.5 * sumHeight / 100));
+            $(this).scrollTop($(this).scrollTop() + $('#detailPost-'+postNumber).position().top-45);
             $.ajax({
                 type: 'GET',
                 url: '/Customer-Post-Visit/' + $('#detailPost-' + postNumber + ' .postID').text(),

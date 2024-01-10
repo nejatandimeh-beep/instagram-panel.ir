@@ -1685,12 +1685,12 @@ class Feed extends Controller
         } else {
             $_SESSION['backPressed'] = false;
             $url==='/Feed'?$_SESSION['loadPostFeed']=6:true;
-            strpos($url,'/Customer-SellerMajor-Panel')?$_SESSION['loadPostPanel']=6:true;
+            str_contains($url,'/Customer-SellerMajor-Panel')?$_SESSION['loadPostPanel']=6:true;
             $url==='/Customer-SellerMajor-Saved'?$_SESSION['loadPostSaved']=12:true;
-            strpos($url,'/Customer-SellerMajor-Search')?$_SESSION['loadPostSearch']=12:true;
+            str_contains($url,'/Customer-SellerMajor-Search')?$_SESSION['loadPostSearch']=12:true;
         }
 
-        return array($status,$url);
+        return array($status,$url,$_SESSION['loadPostSearch']);
     }
 //------------------------------------------------
 //  Convert Date to Iranian Calender

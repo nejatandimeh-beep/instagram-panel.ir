@@ -161,13 +161,8 @@
 
         $('#postRail').on('shown.bs.modal', function () {
             // $('html').css({overflow: 'hidden', height: '100%'});
-            let sumHeight = 0;
-            $('[id^="detailPost-"]').each(function (index) {
-                if (index < postNumber) {
-                    sumHeight += $('#detailPost-' + index).outerHeight();
-                }
-            })
-            $(this).scrollTop(sumHeight + Math.round(0.5 * sumHeight / 100));
+            $(this).scrollTop($(this).scrollTop() + $('#detailPost-'+postNumber).position().top-45);
+
         });
 
         $('#postRail').on('hide.bs.modal hidden.bs.modal', function () {

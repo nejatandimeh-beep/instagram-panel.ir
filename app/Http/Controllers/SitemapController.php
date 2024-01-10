@@ -11,12 +11,10 @@ class SitemapController extends Controller
 {
     public function index()
     {
-        SitemapGenerator::create('https://www.tanastyle.ir')
+        SitemapGenerator::create('https://www.instagram-panel.ir')
             ->getSitemap()
-            ->add(Url::create('/Customer-Product-Female-List'))
-            ->add(Url::create('/Customer-Product-Male-List'))
-            ->add(Url::create('/Customer-Product-Boy-List'))
-            ->add(Url::create('/Customer-Product-Girl-List'))
+            ->add(Url::create('/Feed'))
+            ->add(Url::create('/Customer-SellerMajor-Search/all'))
             ->writeToFile(public_path('Mapping/sitemap.xml'));
         echo 'site map created :)';
 
