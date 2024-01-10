@@ -220,7 +220,6 @@
                                             <div style="bottom: -31px;"
                                                  class="swiper-pagination swiper-pagination{{$key}}"></div>
                                         </div>
-
                                         <!--ذخیره پست-->
                                         <div style="position:relative; z-index: 100"  class="g-pa-10 g-pb-0">
                                             <div>
