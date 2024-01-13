@@ -15,7 +15,7 @@
 
         // detect leave document by time
         document.addEventListener("visibilitychange", function () {
-            let thisTime = new Date(), milliseconds, seconds, urlAddress;
+            let thisTime = new Date(), milliseconds, seconds, urlAddress=window.location.pathname;
             if (document.hidden) {
                 hideTime = thisTime.getTime();
                 console.log("Browser tab is hidden", hideTime)
@@ -24,7 +24,7 @@
                 milliseconds = showTime - hideTime;
                 seconds = Math.floor(milliseconds / (1000));
                 console.log("Browser tab is visible", showTime, seconds, ' sec');
-                switch (window.location.pathname) {
+                switch (urlAddress) {
                     case '/Feed':
                         if (seconds > 300) {
                             console.log('refresh page..');
@@ -96,6 +96,15 @@
                 e.preventDefault();
         });
 
+        function isScrolledIntoView(elem) {
+            let docViewTop = $(window).scrollTop(),
+                docViewBottom = docViewTop + $(window).height(),
+                elemTop = $(elem).offset().top,
+                elemBottom = elemTop + $(elem).height();
+
+            return (((elemBottom - 100) <= docViewBottom) && (elemTop >= docViewTop));
+        }
+
         $(document).ready(function () {
             console.log('load status:', sessionStorage.getItem("loadStatus"));
             let urlAddress = window.location.pathname, swiperItems = 0;
@@ -116,35 +125,28 @@
                           console.log('backPressed:',data)
                         },
                     })
-                    $('#postRail').empty();
                     switch (true) {
                         case urlAddress==="/Feed":
                             cacheData = sessionStorage.getItem("feedData");
-                            $(cacheData).appendTo($('#postRail'));
                             break;
                         case urlAddress==='/Customer-SellerMajor-Saved':
                             cacheData = sessionStorage.getItem("savedData");
                             cacheSampleData = sessionStorage.getItem("savedSampleData");
-                            $('#postSampleContainer').empty();
-                            $(cacheData).appendTo($('#postRail'));
-                            $(cacheSampleData).appendTo($('#postSampleContainer'));
                             break;
                         case urlAddress.indexOf('/Customer-SellerMajor-Panel') >= 0:
                             cacheData = sessionStorage.getItem("panelData");
                             cacheSampleData = sessionStorage.getItem("panelSampleData");
-                            $('#postSampleContainer').empty();
-                            $(cacheData).appendTo($('#postRail'));
-                            $(cacheSampleData).appendTo($('#postSampleContainer'));
                             break;
                         case urlAddress.indexOf('/Customer-SellerMajor-Search') >= 0:
                             cacheData = sessionStorage.getItem("searchData");
                             cacheSampleData = sessionStorage.getItem("searchSampleData");
-                            $('#postSampleContainer').empty();
-                            $(cacheData).appendTo($('#postRail'));
-                            $(cacheSampleData).appendTo($('#postSampleContainer'));
                             break;
                         default:
                     }
+                    $('#postRail').empty();
+                    $('#postSampleContainer').empty();
+                    $(cacheData).appendTo($('#postRail'));
+                    $(cacheSampleData).appendTo($('#postSampleContainer'));
                     swiperItems = parseInt($('#postLoaded').text());
                 } else {
                     let url=urlAddress.replace(/\//g,'*');
@@ -204,36 +206,8 @@
             }, 1000)
         });
 
-        function isScrolledIntoView(elem) {
-            let docViewTop = $(window).scrollTop(),
-                docViewBottom = docViewTop + $(window).height(),
-                elemTop = $(elem).offset().top,
-                elemBottom = elemTop + $(elem).height();
-
-            return (((elemBottom - 100) <= docViewBottom) && (elemTop >= docViewTop));
-        }
-
         window.onbeforeunload = function () {
-            let urlAddress = window.location.pathname;
             sessionStorage.setItem("loadStatus", 'newLoad')
-            switch (true) {
-                case urlAddress==="/Feed":
-                    sessionStorage.setItem("feedData", $('#postRail').html());
-                    break;
-                case urlAddress==='/Customer-SellerMajor-Saved':
-                    sessionStorage.setItem("savedData", $('#postRail').html());
-                    sessionStorage.setItem("savedSampleData", $('#postSampleContainer').html());
-                    break;
-                case urlAddress.indexOf('/Customer-SellerMajor-Panel') >= 0:
-                    sessionStorage.setItem("panelData", $('#postRail').html());
-                    sessionStorage.setItem("panelSampleData", $('#postSampleContainer').html());
-                    break;
-                case urlAddress.indexOf('/Customer-SellerMajor-Search') >= 0:
-                    sessionStorage.setItem("searchData", $('#postRail').html());
-                    sessionStorage.setItem("searchSampleData", $('#postSampleContainer').html());
-                    break;
-                default:
-            }
         }
 
         if (!!window.performance && window.performance.navigation.type === 2) {
@@ -477,18 +451,31 @@
         });
 
         function loadPost() {
-            let postSampleCopy = '.postSampleCopy', url,
-                originalContainer = '#postSampleContainer';
-            if (window.location.pathname.indexOf('/Customer-SellerMajor-Search/') >= 0) {
-                url = '/Customer-Search-LoadPost/' + $('#postCat').text();
-            } else if (window.location.pathname.indexOf('/Customer-SellerMajor-Saved') >= 0) {
-                url = '/Customer-Saved-LoadPost/';
-            } else if (window.location.pathname.indexOf('/Customer-SellerMajor-Panel') >= 0) {
-                console.log(window.location.pathname);
-                url = '/Customer-SellerMajor-Load-Post/' + $('#sellerMajorPanel').text();
-            } else {
-                url = '/Customer-Load-Post/';
+            let urlAddress = window.location.pathname, postSampleCopy = '.postSampleCopy', url,
+                originalContainer = '#postSampleContainer', postRail, postSampleRail;
+            switch (true) {
+                case urlAddress==="/Feed":
+                    url = '/Customer-Load-Post/';
+                    postRail='feedData';
+                    break;
+                case urlAddress==='/Customer-SellerMajor-Saved':
+                    url = '/Customer-Saved-LoadPost/';
+                    postRail='savedData';
+                    postSampleRail='savedSampleData';
+                    break;
+                case urlAddress.indexOf('/Customer-SellerMajor-Panel') >= 0:
+                    url = '/Customer-SellerMajor-Load-Post/' + $('#sellerMajorPanel').text();
+                    postRail='panelData';
+                    postSampleRail='panelSampleData';
+                    break;
+                case urlAddress.indexOf('/Customer-SellerMajor-Search') >= 0:
+                    url = '/Customer-Search-LoadPost/' + $('#postCat').text();
+                    postRail='searchData';
+                    postSampleRail='searchSampleData';
+                    break;
+                default:
             }
+
             $.ajax({
                 type: 'GET',
                 url: url,
@@ -509,6 +496,8 @@
                     $('#postLoaded').text(data[1]);
                 }
             }).done(function () {
+                sessionStorage.setItem(postRail, $('#postRail').html());
+                sessionStorage.setItem(postSampleRail, $('#postSampleContainer').html());
                 completeLoad = true;
             })
         }
