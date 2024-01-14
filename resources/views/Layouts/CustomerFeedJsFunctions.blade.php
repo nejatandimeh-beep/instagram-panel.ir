@@ -107,8 +107,8 @@
 
         $(document).ready(function () {
             console.log('load status:', sessionStorage.getItem("loadStatus"));
-            let urlAddress = window.location.pathname, swiperItems = 0;
-            if (urlAddress.indexOf("/Feed") >= 0 ||
+            let urlAddress = window.location.pathname, swiperItems = 0, postRail, postSampleRail;
+            if (urlAddress==="/Feed" ||
                 urlAddress === '/Customer-SellerMajor-Saved' ||
                 urlAddress.indexOf('/Customer-SellerMajor-Panel') >= 0 ||
                 urlAddress.indexOf('/Customer-SellerMajor-Search') >= 0) {
@@ -154,11 +154,31 @@
                     $.ajax({
                         type: 'GET',
                         url: '/Customer-Browser-backPressed/'+0+'/'+url,
-                        async: false,
                         success: function (data) {
                             console.log('urlAddress:',data)
                         },
                     })
+                    switch (true) {
+                        case urlAddress==="/Feed":
+                            postRail='feedData';
+                            break;
+                        case urlAddress==='/Customer-SellerMajor-Saved':
+                            postRail='savedData';
+                            postSampleRail='savedSampleData';
+                            break;
+                        case urlAddress.indexOf('/Customer-SellerMajor-Panel') >= 0:
+                            postRail='panelData';
+                            postSampleRail='panelSampleData';
+                            break;
+                        case urlAddress.indexOf('/Customer-SellerMajor-Search') >= 0:
+                            postRail='searchData';
+                            postSampleRail='searchSampleData';
+                            break;
+                        default:
+                    }
+                    console.log()
+                    sessionStorage.setItem(postRail, $('#postRail').html());
+                    sessionStorage.setItem(postSampleRail, $('#postSampleContainer').html());
                 }
                 console.log('swiperItems', swiperItems)
                 sessionStorage.setItem("loadStatus", 'newLoad')

@@ -1690,7 +1690,7 @@ class Feed extends Controller
             str_contains($url,'/Customer-SellerMajor-Search')?$_SESSION['loadPostSearch']=12:true;
         }
 
-        return array($status,$url,$_SESSION['loadPostSearch']);
+        return array($status,$url);
     }
 //------------------------------------------------
 //  Convert Date to Iranian Calender
