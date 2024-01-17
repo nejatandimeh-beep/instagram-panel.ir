@@ -1,0 +1,17 @@
+{
+    "name": "instagram-panel",
+    "short_name": "دستیار من",
+    "start_url": "/",
+    "background_color": "#6777ef",
+    "description": "دستیار اینستاگرام",
+    "display": "fullscreen",
+    "theme_color": "#6777ef",
+    "icons": [
+        {
+            "src": "img/Logo/logo500500.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ]
+}

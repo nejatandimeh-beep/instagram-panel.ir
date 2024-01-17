@@ -12,5 +12,6 @@
 
     {{--کلید تایید در فرم ها--}}
     <script src="{{ asset('js/jquery-confirm.min.js') }}"></script>
+    <script src="{{ asset('/sw.js') }}"></script>
 @endsection
 

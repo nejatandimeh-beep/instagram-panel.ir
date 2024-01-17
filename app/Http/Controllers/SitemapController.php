@@ -17,15 +17,5 @@ class SitemapController extends Controller
             ->add(Url::create('/Customer-SellerMajor-Search/all'))
             ->writeToFile(public_path('Mapping/sitemap.xml'));
         echo 'site map created :)';
-
-//        SitemapGenerator::create('https://example.com')
-//            ->getSitemap()
-//            ->add(Url::create('/Customer-Product-Female-List'))
-//            ->add(Url::create('/Customer-Product-Male-List'))
-//            ->add(Url::create('/Customer-Product-Boy-List'))
-//            ->add(Url::create('/Customer-Product-Girl-List'))
-//            ->add(Url::create('/Product'))
-//            ->writeToFile(public_path('SiteMap/sitemap.xml'));
-//        echo 'site map created :)';
     }
 }

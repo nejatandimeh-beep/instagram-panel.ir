@@ -164,7 +164,7 @@ return [
         Kavenegar\Laravel\ServiceProvider::class,
         Darryldecode\Cart\CartServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-
+        Ladumor\LaravelPwa\PWAServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -233,6 +233,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'LaravelPwa' => \Ladumor\LaravelPwa\LaravelPwa::class,
 
         //        Convert date jalali Verta
 //        'Verta' => Hekmatinasser\Verta\Verta::class,

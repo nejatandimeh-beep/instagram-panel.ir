@@ -19,11 +19,6 @@
 
     <link rel="icon" href="{{asset('img/Logo/miniLogo.png')}}" />
 
-    <link rel="apple-touch-icon" href="{{asset('img/Logo/miniLogo.png')}}">
-    <link rel="apple-touch-icon" sizes="76x76" href="{{asset('img/Logo/miniLogo.png')}}">
-    <link rel="apple-touch-icon" sizes="120x120" href="{{asset('img/Logo/miniLogo.png')}}">
-    <link rel="apple-touch-icon" sizes="152x152" href="{{asset('img/Logo/miniLogo.png')}}">
-
     <!--My Style-->
     <link href="{{ asset('css/myStyle.css?v=31234r341') }}" rel="stylesheet">
 <!--Unify Style-->
@@ -70,5 +65,10 @@
 
     <!-- Cropper img -->
     <link  href="{{ asset('css/cropper.css') }}" rel="stylesheet">
+
+    <!-- PWA  -->
+    <meta name="theme-color" content="#6777ef"/>
+    <link rel="apple-touch-icon" sizes="500x500" href="{{asset('img/Logo/miniLogo500500.png')}}">
+    <link rel="manifest" href="{{ asset('/manifest.json') }}">
 <!--End Unify Style-->
 @endsection
