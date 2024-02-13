@@ -1,5 +1,5 @@
 @section('SellerMajorFooter')
-    <footer style="position: fixed; bottom: 0; z-index: 100" class="w-100 g-bg-white text-center g-brd-top g-brd-gray-light-v4">
+    <footer style="position: fixed; bottom: 0; z-index: 100" class="w-100 g-bg-white text-center g-pb-25 g-brd-top g-brd-gray-light-v4">
         <!-- Footer Content -->
         <div class="container p-0">
             <ul class="row no-gutters list-inline g-mb-0">

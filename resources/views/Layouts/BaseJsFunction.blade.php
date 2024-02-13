@@ -13,11 +13,17 @@
                     console.error(`Service worker registration failed: ${error}`);
                 },
             );
+            // clear cache
+            // caches.keys().then(function (cacheNames) {
+            //     cacheNames.forEach(function (cacheName) {
+            //         caches.delete(cacheName);
+            //     });
+            // });
         } else {
             console.error("Service workers are not supported.");
         }
         $(window).on('load', function () {
-            if(!checkCookies()){
+            if (!checkCookies()) {
                 $('body').empty();
                 $('body').append('<div class="w-100 text-center"><img id="cookieDisabled" src="{{ asset("img/Other/cookieDisabled.jpg?4") }}" alt="دستیار اینستاگرام" class="g-pt-7 g-pt-0--lg"></div>');
                 console.log('cookie is disabled!');
@@ -25,7 +31,7 @@
         });
 
         // check cookie
-        function checkCookies(){
+        function checkCookies() {
             if (navigator.cookieEnabled) return true;
 
             // set and read cookie
